@@ -52,6 +52,8 @@ _tasks: list[asyncio.Task] = []
 
 MAX_PORT = 65535
 
+app = FastAPI()
+
 
 class RequestCancelledMiddleware(BaseHTTPMiddleware):
     def __init__(self, app) -> None:

@@ -3,6 +3,7 @@ import json
 from collections.abc import Sequence
 from uuid import UUID
 
+from fastapi import FastAPI
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.messages import BaseMessage
 from loguru import logger
@@ -14,6 +15,11 @@ from langflow.schema.message import Message
 from langflow.services.database.models.message.model import MessageRead, MessageTable
 from langflow.services.deps import session_scope
 from langflow.utils.async_helpers import run_until_complete
+
+app=FastAPI()
+
+from langflow.api import router as main_router
+app.include_router(main_router)
 
 
 def _get_variable_query(
